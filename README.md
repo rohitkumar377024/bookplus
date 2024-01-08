@@ -1,6 +1,6 @@
-### Overview
+# Overview
 
-# This repository contains the source code for Round 2 assignment of outscale.ai.
+### This repository contains the source code for Round 2 assignment of outscale.ai.
 
 # Folder Structure
 
