@@ -21,12 +21,12 @@ const Login = () => {
 
             dispatch({
                 type: 'SET_ACCESS_TOKEN',
-                payload: result?.data?.token
+                payload: result?.data?.data?.token
             })
 
             dispatch({
                 type: 'SET_USER_ID',
-                payload: result?.data?.userID
+                payload: result?.data?.data?.userID
             })
 
             navigate('my-books')

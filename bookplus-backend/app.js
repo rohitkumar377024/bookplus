@@ -21,6 +21,6 @@ app.use(cors(
 app.use("/api/auth", userRouter);
 app.use("/api/books", bookRouter);
 
-mongoose.connect('mongodb+srv://admin-rohit:test123@cluster0-exv7e.mongodb.net/outscale')
+mongoose.connect(process?.env?.MONGO_ATLAS_SRV)
 
 app.listen(PORT, () => console.log(`Listening on Port ${PORT}`))
