@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux'
 
 const PublishBook = () => {
     const accessToken = useSelector(state => state?.accessToken)
+    const userID = useSelector(state => state?.userID)
     const [title, setTitle] = useState('')
     const [content, setContent] = useState('')
     const [genre, setGenre] = useState('')
@@ -18,7 +19,7 @@ const PublishBook = () => {
                     title,
                     content,
                     genre,
-                    "userID": "659ce19c4caf17c39844e6f1"
+                    userID
                 },
                 {headers: {'Authorization': accessToken}}
             )

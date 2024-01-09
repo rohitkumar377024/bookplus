@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux'
 
 const MyBooks = () => {
     const accessToken = useSelector(state => state?.accessToken)
+    const userID = useSelector(state => state?.userID)
     const [books, setBooks] = useState([])
 
     useEffect(() => {
@@ -15,7 +16,7 @@ const MyBooks = () => {
      async function fetchUserPublishedBooks() {
         try {
             // TODO -> modify this user ID
-            const userID = '659ce19c4caf17c39844e6f1'
+            
             const result = await axios.get(
                 `https://bookplus-backend.onrender.com/api/books/user?userID=${userID}`, 
                 {headers: {'Authorization': accessToken}}

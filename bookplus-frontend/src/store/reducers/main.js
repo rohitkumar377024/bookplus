@@ -1,5 +1,6 @@
 const initialState = {
-    accessToken: ''
+    accessToken: '',
+    userID: ''
   };
   
   const mainReducer = (state = initialState, action) => {
@@ -8,6 +9,11 @@ const initialState = {
         return {
           ...state,
           accessToken: action?.payload,
+        };
+      case 'SET_USER_ID':
+        return {
+          ...state,
+          userID: action?.payload,
         };
       default:
         return state;
