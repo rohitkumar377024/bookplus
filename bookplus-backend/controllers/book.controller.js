@@ -17,9 +17,9 @@ exports.publishBook = async (req, res) => {
 exports.searchBook = async (req, res) => {
     const { title } = req?.query;
 
-    const result = await Book.findOne({ title: { $regex: new RegExp(title, "i") } })
+    const result = await Book.find({ title: { $regex: new RegExp(title, "i") } })
 
-    res.status(200).json({result})
+    res.status(200).json({ message: 'Found book successfully', data: result })
 }
 
 exports.unpublishBook = async (req, res) => {
