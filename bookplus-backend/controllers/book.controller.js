@@ -39,7 +39,30 @@ exports.getUserPublishedBooks = async (req, res) => {
 }
 
 exports.getAllPublishedBooks = async (req, res) => {
-    const result = await Book.find({ isPublished: true })
+    const page = parseInt(req.query.page) || 1; // Default to page 1 if not provided
+    const size = parseInt(req.query.size) || 10; // Default to size 10 if not provided
 
-    res.status(200).json({ message: 'Found all published books successfully', data: result})
+    const skip = (page - 1) * size;
+
+    const result = await Book.find({ isPublished: true })
+        .skip(skip)
+        .limit(size);
+
+    const totalBooks = await Book.countDocuments({ isPublished: true });
+
+    const totalPages = Math.ceil(totalBooks / size);
+
+    res.status(200).json({
+        message: 'Found all published books successfully',
+        data: result,
+        pageInfo: {
+            currentPage: page,
+            totalPages: totalPages,
+            pageSize: size,
+            totalItems: totalBooks,
+        },
+    });
+    // const result = await Book.find({ isPublished: true })
+
+    // res.status(200).json({ message: 'Found all published books successfully', data: result})
 }

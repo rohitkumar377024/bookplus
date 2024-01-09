@@ -7,7 +7,6 @@ const MyBooks = () => {
 
     useEffect(() => {
         fetchUserPublishedBooks()
-        
     }, [])
 
      // API Call -> fetch user published books
@@ -49,9 +48,15 @@ const MyBooks = () => {
     return <div>
         <h1>My Published Books</h1>
 
+        <hr/>
         <Link to='/publish-book'>Publish New Book</Link>
-        <div></div>
+        <hr/>
         <Link to='/search-books'>Search Books</Link>
+        <hr/>
+        <Link to='/all-books'>All Published Books (Paginated)</Link>
+        <hr/>
+
+        <br/>
 
         <div>
             {books.map(book =><div style={{border: '2px solid white'}}>
