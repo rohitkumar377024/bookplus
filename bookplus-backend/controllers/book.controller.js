@@ -19,7 +19,7 @@ exports.searchBook = async (req, res) => {
 
     const result = await Book.find({ title: { $regex: new RegExp(title, "i") } })
 
-    res.status(200).json({ message: 'Found book successfully', data: result })
+    res.status(200).json({ message: 'Found books successfully', data: result })
 }
 
 exports.unpublishBook = async (req, res) => {
@@ -31,7 +31,7 @@ exports.unpublishBook = async (req, res) => {
 }
 
 exports.getUserPublishedBooks = async (req, res) => {
-    const { userID } = req?.body;
+    const { userID } = req?.query;
 
     const result = await Book.find({ userID, isPublished: true })
 

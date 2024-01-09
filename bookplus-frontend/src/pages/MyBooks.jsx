@@ -9,7 +9,7 @@ const MyBooks = () => {
     )
 
     return <div>
-        <h1>My Books</h1>
+        <h1>My Published Books</h1>
 
         <Link to='/publish-book'>Publish New Book</Link>
         <div></div>
