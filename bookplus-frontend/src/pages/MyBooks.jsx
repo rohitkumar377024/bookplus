@@ -19,8 +19,28 @@ const MyBooks = () => {
                 `https://bookplus-backend.onrender.com/api/books/user?userID=${userID}`, 
                 {headers: {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTljZTE5YzRjYWYxN2MzOTg0NGU2ZjEiLCJpYXQiOjE3MDQ3ODAzMDksImV4cCI6MTcwNTM4NTEwOX0.ovyYdQk8z-PkyCLoJL1XE0bk7J67Sgz-puskJeG6t_g'}}
             )
+            // alert(result?.data?.message)
+            setBooks(result?.data?.data)
+        } catch (e) {
+            alert(e?.response?.data?.message)
+        }
+    }
+
+    // API Call -> fetch user published books
+    async function unpublishBook(bookID) {
+        try {
+            // TODO -> modify this user ID
+         
+            const result = await axios.put(
+                `https://bookplus-backend.onrender.com/api/books/unpublish/${bookID}`, 
+                {},
+                {headers: {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTljZTE5YzRjYWYxN2MzOTg0NGU2ZjEiLCJpYXQiOjE3MDQ3ODAzMDksImV4cCI6MTcwNTM4NTEwOX0.ovyYdQk8z-PkyCLoJL1XE0bk7J67Sgz-puskJeG6t_g'}}
+            )
+
             alert(result?.data?.message)
-            setBooks(result?.data?.data?.map(book => book?.title))
+
+            // re-fetch published books list
+            await fetchUserPublishedBooks()
         } catch (e) {
             alert(e?.response?.data?.message)
         }
@@ -34,7 +54,12 @@ const MyBooks = () => {
         <Link to='/search-books'>Search Books</Link>
 
         <div>
-            {books.map(book => <h3 style={{border: '2px solid white'}}>{book}</h3>)}
+            {books.map(book =><div style={{border: '2px solid white'}}>
+                <p>Title: {book?.title}</p>
+                <p>Content: {book?.content}</p>
+                <p>Genre: {book?.genre}</p>
+                <button onClick={() => unpublishBook(book?._id)}>UNPUBLISH BOOK</button>
+            </div>)}
         </div>
     </div>
 }

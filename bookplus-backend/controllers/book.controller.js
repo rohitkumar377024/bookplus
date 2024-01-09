@@ -27,7 +27,7 @@ exports.unpublishBook = async (req, res) => {
     
     const result = await Book.updateOne({ _id: bookId }, { isPublished: false})
 
-    res.status(200).json({bookId})
+    res.status(200).json({ message: 'Book unpublished successfully', data: {} })
 }
 
 exports.getUserPublishedBooks = async (req, res) => {
