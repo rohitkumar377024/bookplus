@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import { Link, useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
 
 const Login = () => {
+    const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const [username, setUsername] = useState('')
@@ -16,6 +18,11 @@ const Login = () => {
                 password
             })
             alert(result?.data?.message)
+
+            dispatch({
+                type: 'SET_ACCESS_TOKEN',
+                payload: result?.data?.data
+            })
 
             navigate('my-books')
         } catch (e) {

@@ -28,13 +28,7 @@ exports.signUpUser = async (req, res) => {
         }
       );
 
-    //   sendResponse(res, 200, "", {
-    //     ...result._doc,
-    //     token,
-    //   });
-  
-
-    res.status(201).json({ message: 'Signed up user successfully', data: token })
+    res.status(201).json({ message: 'Signed up user successfully', data: { userID: result._id, token } })
 }
 
 exports.loginUser = async (req, res) => {
@@ -55,7 +49,7 @@ exports.loginUser = async (req, res) => {
         }
       );
 
-      res.status(200).json({ message: 'Logged in user successfully', data: token })
+      res.status(200).json({ message: 'Logged in user successfully', data: { userID: userExists?._id, token } })
     } else {
       // sendResponse(res, 400, "Invalid credentials for login", "");
       res.status(401).json({ message: 'Invalid credentials for login', data: {} })

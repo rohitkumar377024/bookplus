@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Link, useSearchParams } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
 const AllBooks = () => {
+    const accessToken = useSelector(state => state?.accessToken)
     const [books, setBooks] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
@@ -10,15 +12,15 @@ const AllBooks = () => {
     const [pageSize, setPageSize] = useState(5)
 
     useEffect(() => {
-        fetchAllPublishedBooksPaginated(currentPage )
+        fetchAllPublishedBooksPaginated(currentPage)
     }, [currentPage])
 
     // API Call -> fetch all published books (paginated)
     async function fetchAllPublishedBooksPaginated() {
         try {
             const result = await axios.get(
-                `http://localhost:10000/api/books/published?page=${currentPage}&size=${pageSize}`, 
-                {headers: {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTljZTE5YzRjYWYxN2MzOTg0NGU2ZjEiLCJpYXQiOjE3MDQ3ODAzMDksImV4cCI6MTcwNTM4NTEwOX0.ovyYdQk8z-PkyCLoJL1XE0bk7J67Sgz-puskJeG6t_g'}}
+                `https://bookplus-backend.onrender.com/api/books/published?page=${currentPage}&size=${pageSize}`, 
+                {headers: {'Authorization': accessToken}}
             )
             // alert(result?.data?.message)
             setBooks(result?.data?.data);
@@ -50,7 +52,7 @@ const AllBooks = () => {
                 <button onClick={() => handlePageChange(currentPage + 1)}>Next</button>
             </div>
 
-            <h5>INFO: (page size = 5)</h5>
+            <h5>INFO: (page size = {pageSize})</h5>
 
             <Link to='/my-books'>My Books</Link>
     </div>

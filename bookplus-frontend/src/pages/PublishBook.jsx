@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import { Link, useNavigate } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
 const PublishBook = () => {
+    const accessToken = useSelector(state => state?.accessToken)
     const [title, setTitle] = useState('')
     const [content, setContent] = useState('')
     const [genre, setGenre] = useState('')
@@ -18,7 +20,7 @@ const PublishBook = () => {
                     genre,
                     "userID": "659ce19c4caf17c39844e6f1"
                 },
-                {headers: {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTljZTE5YzRjYWYxN2MzOTg0NGU2ZjEiLCJpYXQiOjE3MDQ3ODAzMDksImV4cCI6MTcwNTM4NTEwOX0.ovyYdQk8z-PkyCLoJL1XE0bk7J67Sgz-puskJeG6t_g'}}
+                {headers: {'Authorization': accessToken}}
             )
             alert(result?.data?.message)
         } catch (e) {

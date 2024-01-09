@@ -12,6 +12,9 @@ import AllBooks from "./pages/AllBooks";
 import SearchBooks from "./pages/SearchBooks";
 import UnpublishBook from "./pages/UnpublishBook";
 
+import {Provider} from 'react-redux';
+import store from './store';
+
 function App() {
   const router = createBrowserRouter([
     {
@@ -44,7 +47,9 @@ function App() {
     },
   ]);
 
-  return <RouterProvider router={router} />;
+  return <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
 }
 
 export default App;

@@ -39,8 +39,8 @@ exports.getUserPublishedBooks = async (req, res) => {
 }
 
 exports.getAllPublishedBooks = async (req, res) => {
-    const page = parseInt(req.query.page) || 1; // Default to page 1 if not provided
-    const size = parseInt(req.query.size) || 10; // Default to size 10 if not provided
+    const page = parseInt(req.query.page) || 1; 
+    const size = parseInt(req.query.size) || 10;
 
     const skip = (page - 1) * size;
 
