@@ -1,9 +1,11 @@
 const router = require("express").Router();
+const bookController = require('../controllers/book.controller')
+const authMiddleware = require('../middlewares/auth.middleware')
 
-router.post('/publish', (req, res) => res.send('book publish'))
-router.get('/search', (req, res) => res.send('book search by title'))
-router.put('/unpublish/:bookId', (req, res) => res.send('book unpublish'))
-router.get('/user', (req, res) => res.send('get books list published by current user'))
-router.get('/published', (req, res) => res.send('book publish'))
+router.post('/publish', authMiddleware, bookController.publishBook)
+router.get('/search', authMiddleware, bookController.searchBook)
+router.put('/unpublish/:bookId', authMiddleware, bookController.unpublishBook)
+router.get('/user', authMiddleware, bookController.getUserPublishedBooks)
+router.get('/published', authMiddleware, bookController.getAllPublishedBooks)
 
 module.exports = router;
