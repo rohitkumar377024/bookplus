@@ -11,8 +11,8 @@ const bookRouter = require('./routes/book.route')
 
 app.use(bodyParser({extended: true}));
 
-app.use("/auth", userRouter);
-app.use("/books", bookRouter);
+app.use("/api/auth", userRouter);
+app.use("/api/books", bookRouter);
 
 mongoose.connect('mongodb+srv://admin-rohit:test123@cluster0-exv7e.mongodb.net/outscale')
 
