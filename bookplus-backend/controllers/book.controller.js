@@ -35,11 +35,11 @@ exports.getUserPublishedBooks = async (req, res) => {
 
     const result = await Book.find({ userID, isPublished: true })
 
-    res.status(200).json({result})
+    res.status(200).json({ message: 'Found published books successfully', data: result })
 }
 
 exports.getAllPublishedBooks = async (req, res) => {
     const result = await Book.find({ isPublished: true })
 
-    res.status(200).json({result})
+    res.status(200).json({ message: 'Found all published books successfully', data: result})
 }

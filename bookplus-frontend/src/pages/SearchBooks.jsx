@@ -13,7 +13,7 @@ const SearchBooks = () => {
                 `https://bookplus-backend.onrender.com/api/books/search?title=${searchTerm}`, 
                 {headers: {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTljZTE5YzRjYWYxN2MzOTg0NGU2ZjEiLCJpYXQiOjE3MDQ3ODAzMDksImV4cCI6MTcwNTM4NTEwOX0.ovyYdQk8z-PkyCLoJL1XE0bk7J67Sgz-puskJeG6t_g'}}
             )
-            alert(result?.data?.message)
+            // alert(result?.data?.message)
             setSearchResults(result?.data?.data)
         } catch (e) {
             alert(e?.response?.data?.message)
