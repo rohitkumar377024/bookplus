@@ -11,8 +11,8 @@ exports.signUpUser = async (req, res) => {
   // If email address in request body and user exists in DB already
   if (userExists) {
     res.status(400).json({
-      message: "error",
-      data: "User with this email address already exists",
+      message: "User with this email address already exists",
+      data: {},
     });
     return;
   } else {

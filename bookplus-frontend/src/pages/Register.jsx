@@ -29,7 +29,7 @@ const Register = () => {
                 payload: result?.data?.userID
             })
 
-            navigate('my-books')
+            navigate('/my-books')
         } catch (e) {
             alert(e?.response?.data?.message)
         }
