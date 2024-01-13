@@ -6,7 +6,7 @@ const JWT_SECRET_KEY = 'TAG_JWT_SECRET_KEY'
 
 exports.signUpUser = async (req, res) => {
   // Check if user already exists in DB (based on email)
-  const userExists = await User.findOne({ emailAddress });
+  const userExists = await User.findOne({ username: req?.body?.username });
 
   // If email address in request body and user exists in DB already
   if (userExists) {
@@ -15,8 +15,7 @@ exports.signUpUser = async (req, res) => {
       data: "User with this email address already exists",
     });
     return;
-  }
-
+  } else {
     // TODO: static fields for now
     const username = req?.body?.username
     const password = req?.body?.password
@@ -39,6 +38,7 @@ exports.signUpUser = async (req, res) => {
       );
 
     res.status(201).json({ message: 'Signed up user successfully', data: { userID: result._id, token } })
+  }
 }
 
 exports.loginUser = async (req, res) => {
