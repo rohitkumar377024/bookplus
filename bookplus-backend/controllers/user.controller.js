@@ -5,7 +5,17 @@ const User = require("../models/user.model");
 const JWT_SECRET_KEY = 'TAG_JWT_SECRET_KEY'
 
 exports.signUpUser = async (req, res) => {
-  console.log(req.body)
+  // Check if user already exists in DB (based on email)
+  const userExists = await User.findOne({ emailAddress });
+
+  // If email address in request body and user exists in DB already
+  if (userExists) {
+    res.status(400).json({
+      message: "error",
+      data: "User with this email address already exists",
+    });
+    return;
+  }
 
     // TODO: static fields for now
     const username = req?.body?.username

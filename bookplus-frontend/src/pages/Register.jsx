@@ -13,7 +13,7 @@ const Register = () => {
     // API Call -> register
     async function register() {
         try {
-            const result = await axios.post('https://bookplus-backend.onrender.com/api/auth/register', {
+            const result = await axios.post('https://bookplus-backend.onrender.com/api/auth/signup', {
                 username,
                 password
             })
